@@ -84,3 +84,26 @@
 ;; 58
 (roman_to_int "MCMXCIV")
 ;;1994
+
+(defn has_prefix? [prefix strings]
+  (reduce 
+   (fn [result string]
+     (and result (cs/starts-with? string prefix))) true strings))
+
+(defn longest_common_prefix [ first & strings ]
+  (let [splited (vec first) count (count splited)]
+    (println strings)
+    (println splited)
+    (loop [acc [] x 0]
+      (let  [next (conj acc (get splited (+ x 1)))]
+        (if (>= x count)
+          (cs/join "" acc)
+          (if (has_prefix? (cs/join "" next) strings)
+            (recur next (+ x 1))
+            (recur acc (+ x count))))))))
+
+(longest_common_prefix [ "flower" "flow" "flight"])
+;; 'fl'
+
+(longest_common_prefix [ "dog" "racecar" "car"])
+;; '' 
