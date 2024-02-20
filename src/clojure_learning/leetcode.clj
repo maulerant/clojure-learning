@@ -1,5 +1,7 @@
 (ns clojure-learning.leetcode
-  (:require [clojure.set :as set]))
+  (:require [clojure.set :as set])
+  (:require [clojure.string :as cs])
+  )
 
 (defn task268 [arr] 
   (set/difference 
@@ -37,4 +39,10 @@
 (two_sum [3, 3] 6)
 ;; => [0 1]
 
-  
+(defn palindrom_number [number]
+  (= (str number) (cs/join "" (reverse (vec (str number))))))
+
+(palindrom_number 1121)
+;; => false
+
+(palindrom_number 121)
