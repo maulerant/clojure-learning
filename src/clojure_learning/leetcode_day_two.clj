@@ -35,9 +35,12 @@
 (monotonic-array [ 1 3 2])
 ;; false
 
-(defn reverse-words [ str ]
-  (str (reverse str)))
+(defn reverse-words [ string ]
+  (apply str (reverse string)))
 
 (reverse-words "Let's take LeetCode contest")
+;; => "tsetnoc edoCteeL ekat s'teL"
+
 
 (reverse-words "Mr Ding")
+;; => "gniD rM"
