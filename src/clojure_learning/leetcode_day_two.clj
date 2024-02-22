@@ -21,3 +21,16 @@
 
 (sort-array-by-parity2 [0])
 ;; [0]
+
+(defn monotonic-array [array]
+  (let [sorted (vec (sort array))]
+    (or (= sorted array) (= (vec (reverse sorted)) array))))
+
+(monotonic-array [1 2 2 3])
+;; true
+
+(monotonic-array [6 5 4 4])
+;; true
+
+(monotonic-array [ 1 3 2])
+;; false
