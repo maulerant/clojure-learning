@@ -2,10 +2,10 @@
 
 (defn sort-array-by-parity [array]
   (reduce
-   (fn [acc item]
-     (if (odd? item)
-       (conj acc item)
-       (concat [item] acc))) [] array))
+    (fn [acc item]
+      (if (odd? item)
+        (conj acc item)
+        (concat [item] acc))) [] array))
 
 (sort-array-by-parity [3 1 2 4])
 ;; [4 2 3 1]
@@ -14,7 +14,7 @@
 ;; [0]
 
 (defn sort-array-by-parity2 [array]
-  (concat (filter even? array )(filter odd? array) ))
+  (concat (filter even? array) (filter odd? array)))
 
 (sort-array-by-parity2 [3 1 2 4])
 ;; [4 2 3 1]
@@ -32,10 +32,10 @@
 (monotonic-array [6 5 4 4])
 ;; true
 
-(monotonic-array [ 1 3 2])
+(monotonic-array [1 3 2])
 ;; false
 
-(defn reverse-words [ string ]
+(defn reverse-words [string]
   (apply str (reverse string)))
 
 (reverse-words "Let's take LeetCode contest")
@@ -44,3 +44,24 @@
 
 (reverse-words "Mr Ding")
 ;; => "gniD rM"
+
+(defn calculate-pair [ pairs]
+  (reduce
+    (fn [acc count]
+        (println count)
+       (+ acc (/ (* count (- count 1)) 2)))
+    0 (vals pairs)))
+
+(defn number-of-good-pair [ numbers]
+  (calculate-pair
+    (reduce
+      (fn [acc number]
+        (assoc acc number (+ 1 (acc number 0)))) {} numbers)))
+
+(number-of-good-pair [ 1 1 1 1])
+;; 6
+
+(number-of-good-pair [ 1,2,3,1,1,3])
+;; 4
+(number-of-good-pair [ 1,2,3])
+;;0
