@@ -65,3 +65,25 @@
 ;; 4
 (number-of-good-pair [ 1,2,3])
 ;;0
+
+(def numbers [ \0 \1 \2 \3 \4 \5 \6 \7 \8 \9])
+
+(defn is_number? [ char]
+  (some #(= char %) numbers))
+
+(defn decode-string [ string]
+  (reduce
+    (fn [acc char]
+      (if (is_number? char)
+        (let [count (Integer/parseInt (str char))]
+          (vec ( flatten (repeat count acc))))
+        (conj acc char))) [] string))
+
+(defn decode-string-at-index [string position]
+  (get (decode-string string) (- position 1)))
+
+(decode-string-at-index "leet2code3" 10)
+;; \o
+
+(decode-string-at-index "ha22" 5)
+;; \h
